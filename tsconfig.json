@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",                      // 최상위 디렉터리를 기준으로 alias 작동
+    "paths": {
+      "@/*": ["src/*"],                  // src 폴더 전체 접근용
+      "@components/*": ["src/components/*"] // components 폴더 접근용
+    },
     "target": "ES2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,21 +19,14 @@
     "jsx": "preserve",
     "incremental": true,
     "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    }
+      { "name": "next" }
+    ]
   },
   "include": [
+    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "next-env.d.ts",
     "build/types/**/*.ts"
   ],
   "exclude": [

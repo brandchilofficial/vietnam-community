@@ -1,5 +1,7 @@
+const path = require('path');
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
   images: {
     unoptimized: true,
     domains: [
@@ -9,26 +11,10 @@ const nextConfig = {
       "ugc.same-assets.com",
     ],
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "source.unsplash.com",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "ext.same-assets.com",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "ugc.same-assets.com",
-        pathname: "/**",
-      },
+      { protocol: "https", hostname: "source.unsplash.com", pathname: "/**" },
+      { protocol: "https", hostname: "images.unsplash.com",   pathname: "/**" },
+      { protocol: "https", hostname: "ext.same-assets.com",   pathname: "/**" },
+      { protocol: "https", hostname: "ugc.same-assets.com",   pathname: "/**" },
     ],
   },
   typescript: {
@@ -37,6 +23,8 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  webpack(config) {
+    config.resolve.alias['@components'] = path.resolve(__dirname, 'src/components');
+    return config;
+  },
 };
-
-module.exports = nextConfig;
